@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="app_name">lesson_14_homework</string>
+    // кнопки
+    <string name="Fibonacci_cycle">1. Fibonacci cycle</string>
+    <string name="Fibonacci_recursion">1. Fibonacci recursion</string>
+    <string name="Data_random">2. Data random</string>
+    <string name="Copy_data_class">3. Copy data class</string>
+    <string name="Class_Util">4. Class Util</string>
+    <string name="Enlargement">5. Enlargement</string>
+    <string name="Сounter">6. Сounter</string>
+    <string name="New_object">7. New object</string>
+
+    // инфа
+    <string name="title">Выберите номер задания:</string>
+    <string name="info11">1. (Цикл) Первые 20 чисел ряда фибоначчи циклом:</string>
+    <string name="info12">1. (Рекурсия) Первые 20 чисел ряда фибоначчи рекурсией:</string>
+    <string name="info2">2. Генерации объекта data класса рандомными числами:</string>
+    <string name="info3">3. Класс наследник от data класса:</string>
+    <string name="info4">4. Класс ‘Util’, сумма полей data class:</string>
+    <string name="info5">5. функцию расширения для data класса, return сумму полей:</string>
+    <string name="info6">6. Количество нажатий:</string>
+    <string name="info7">7. Генерация нового объекта data class:</string>
+
+</resources>
