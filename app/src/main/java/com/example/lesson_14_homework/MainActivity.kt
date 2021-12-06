@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.view.View
 import com.example.lesson_14_homework.databinding.ActivityMainBinding
 
-lateinit var binding: ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -132,10 +131,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun gohomework15(view: View){
-        val intent = Intent(this, MainActivity2::class.java)
-        startActivity(intent)
+        startActivity(
+            Intent(this, MainActivity2::class.java)
+        )
     }
-
 }
 
 

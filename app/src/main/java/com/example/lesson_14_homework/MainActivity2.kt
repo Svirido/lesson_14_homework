@@ -7,64 +7,77 @@ import android.view.View
 import com.example.lesson_14_homework.databinding.ActivityMain2Binding
 import com.example.lesson_14_homework.databinding.ActivityMainBinding
 
-lateinit var binding2: ActivityMain2Binding
-
 class MainActivity2 : AppCompatActivity() {
+    lateinit var binding2: ActivityMain2Binding
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
         binding2 = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding2.root)
     }
 
+    var counter = 0
+
     fun add(view: View) {
-        binding2.textAdd.visibility = View.VISIBLE
-        binding2.buttonBigFourCheeses.visibility = View.VISIBLE
-        binding2.buttonBigNeapolitan.visibility = View.VISIBLE
-        binding2.buttonSmallSicilian.visibility = View.VISIBLE
-        binding2.buttonSmallMargarita.visibility = View.VISIBLE
+        binding2.run {
+            textAdd.visibility = View.VISIBLE
+            buttonBigFourCheeses.visibility = View.VISIBLE
+            buttonBigNeapolitan.visibility = View.VISIBLE
+            buttonSmallSicilian.visibility = View.VISIBLE
+            buttonSmallMargarita.visibility = View.VISIBLE
+        }
     }
 
     fun closeAdd() {
-        binding2.textAdd.visibility = View.INVISIBLE
-        binding2.buttonBigFourCheeses.visibility = View.INVISIBLE
-        binding2.buttonBigNeapolitan.visibility = View.INVISIBLE
-        binding2.buttonSmallSicilian.visibility = View.INVISIBLE
-        binding2.buttonSmallMargarita.visibility = View.INVISIBLE
+        binding2.run {
+            textAdd.visibility = View.INVISIBLE
+            buttonBigFourCheeses.visibility = View.INVISIBLE
+            buttonBigNeapolitan.visibility = View.INVISIBLE
+            buttonSmallSicilian.visibility = View.INVISIBLE
+            buttonSmallMargarita.visibility = View.INVISIBLE
+        }
     }
 
     fun addBigFourCheeses(view: View) {
-        var pizzaBigFourCheeses = BigFourCheeses()
-        pizzaBigFourCheeses.name = "Большая четыри сыра"
-        pizzaBigFourCheeses.price = 30
-        PizzaSingleton.pizza.add(pizzaBigFourCheeses)
+        PizzaSingleton.pizza.add(
+            BigFourCheeses().apply {
+                name = "Большая четыри сыра"
+                price = 30
+                size = 4
+                numberOfCheeses = 4
+            }
+        )
         closeAdd()
     }
 
     fun addBigNeapolitan(view: View) {
-        var pizzaBigNeapolitan = BigNeapolitan()
-        pizzaBigNeapolitan.name = "Большая неаполитанская"
-        pizzaBigNeapolitan.price = 25
-        PizzaSingleton.pizza.add(pizzaBigNeapolitan)
+        PizzaSingleton.pizza.add(
+            BigNeapolitan().apply {
+                name = "Большая неаполитанская"
+                price = 25
+            }
+        )
         closeAdd()
     }
 
     fun addSmallSicilian(view: View) {
-        var pizzaSmallSicilian = SmallSicilian()
-        pizzaSmallSicilian.name = "Маленькая сицилийская"
-        pizzaSmallSicilian.price = 18
-        PizzaSingleton.pizza.add(pizzaSmallSicilian)
+        PizzaSingleton.pizza.add(
+            SmallSicilian().apply {
+                name = "Маленькая сицилийская"
+                price = 18
+            }
+        )
         closeAdd()
     }
 
     fun addSmallMargarita(view: View) {
-        var pizzaSmallMargarita = SmallMargarita()
-        pizzaSmallMargarita.name = "Маленькая маргарита"
-        pizzaSmallMargarita.price = 14
-        PizzaSingleton.pizza.add(pizzaSmallMargarita)
+        PizzaSingleton.pizza.add(
+            SmallMargarita().apply {
+                name = "Маленькая маргарита"
+                price = 14
+            }
+        )
         closeAdd()
     }
-
-    var counter = 0
 
     fun previous(view: View) {
         if (PizzaSingleton.pizza.firstOrNull() == null) {
@@ -79,20 +92,19 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     fun next1(view: View) {
-        if (PizzaSingleton.pizza.firstOrNull() == null) {
-            binding2.textViewOut.text = "Добавьте элемент"
-        } else {
-            if (binding2.textViewOut.text == "") {
-                binding2.textViewOut.text = PizzaSingleton.pizza[0].extension()
-            } else
-                if (PizzaSingleton.pizza.size - 1 == counter) {
-                    binding2.textViewOut.text = PizzaSingleton.pizza[counter].extension()
-                } else {
-                    counter++
-                    binding2.textViewOut.text = PizzaSingleton.pizza[counter].extension()
-                }
-            binding2.buttonDelete.visibility = View.VISIBLE
+        when {
+            PizzaSingleton.pizza.firstOrNull() == null -> binding2.textViewOut.text =
+                "Добавьте элемент"
+            binding2.textViewOut.text == "" -> binding2.textViewOut.text =
+                PizzaSingleton.pizza[0].extension()
+            PizzaSingleton.pizza.size - 1 == counter -> binding2.textViewOut.text =
+                PizzaSingleton.pizza[counter].extension()
+            else -> {
+                counter++
+                binding2.textViewOut.text = PizzaSingleton.pizza[counter].extension()
+            }
         }
+        binding2.buttonDelete.visibility = View.VISIBLE
     }
 
     fun delete(view: View) {
@@ -105,7 +117,8 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     fun gohomework14(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        startActivity(
+            Intent(this, MainActivity::class.java)
+        )
     }
 }
