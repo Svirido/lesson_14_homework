@@ -1,13 +1,13 @@
 package com.example.lesson_14_homework
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.lesson_14_homework.databinding.ActivityMainBinding
 
-lateinit var binding: ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -128,6 +128,12 @@ class MainActivity : AppCompatActivity() {
         binding.textOutput.setText(R.string.info7)
         binding.textOutput2.visibility = View.VISIBLE
         binding.textOutput2.text = class4.toString()
+    }
+
+    fun gohomework15(view: View){
+        startActivity(
+            Intent(this, MainActivity2::class.java)
+        )
     }
 }
 
