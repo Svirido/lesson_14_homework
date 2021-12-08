@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import com.example.lesson_14_homework.databinding.ActivityMain2Binding
-import com.example.lesson_14_homework.databinding.ActivityMainBinding
 
 class MainActivity2 : AppCompatActivity() {
     lateinit var binding2: ActivityMain2Binding
@@ -13,19 +13,63 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(s)
         binding2 = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding2.root)
+
+        var box = Catalog<Pizza>()
+
+        var pizza1 = Pizza()
+        box.boxPizza.add(pizza1.apply {
+            name = "Четыре сезона"
+            price = 23
+        })
+        binding2.textViewCatalog0.text = box.boxPizza[0].extension()
+
+        var pizza2 = Pizza()
+        box.boxPizza.add(pizza2.apply {
+            name = "Маргарита"
+            price = 19
+        })
+        binding2.textViewCatalog1.text = box.boxPizza[1].extension()
+
+        var pizza3 = Pizza()
+        box.boxPizza.add(pizza3.apply {
+            name = "Карбонара"
+            price = 27
+        })
+        binding2.textViewCatalog2.text = box.boxPizza[2].extension()
+
+        var i = 0
+        val button: Button = findViewById(R.id.buttonAdd)
+        button.setOnClickListener {
+            i++
+            when (i) {
+                1 -> {
+                    PizzaSingleton.pizza.add(box.boxPizza[0])
+                    binding2.textViewSingelton0.text = PizzaSingleton.pizza[0].extension()
+                }
+                2 -> {
+                    PizzaSingleton.pizza.add(box.boxPizza[1])
+                    binding2.textViewSingelton1.text = PizzaSingleton.pizza[1].extension()
+                }
+                else -> {
+                    PizzaSingleton.pizza.add(box.boxPizza[2])
+                    binding2.textViewSingelton2.text = PizzaSingleton.pizza[2].extension()
+                }
+            }
+        }
     }
+
 
     var counter = 0
 
-    fun add(view: View) {
-        binding2.run {
-            textAdd.visibility = View.VISIBLE
-            buttonBigFourCheeses.visibility = View.VISIBLE
-            buttonBigNeapolitan.visibility = View.VISIBLE
-            buttonSmallSicilian.visibility = View.VISIBLE
-            buttonSmallMargarita.visibility = View.VISIBLE
-        }
-    }
+//    fun add(view: View) {
+//        binding2.run {
+//            textAdd.visibility = View.VISIBLE
+//            buttonBigFourCheeses.visibility = View.VISIBLE
+//            buttonBigNeapolitan.visibility = View.VISIBLE
+//            buttonSmallSicilian.visibility = View.VISIBLE
+//            buttonSmallMargarita.visibility = View.VISIBLE
+//        }
+//    }
 
     fun closeAdd() {
         binding2.run {
